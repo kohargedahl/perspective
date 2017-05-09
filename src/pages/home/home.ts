@@ -10,7 +10,7 @@ import { ContentfulService } from '../../app/services/contentful.service';
 
 
 export class HomePage {
-
+// in typescript when we create new variables we need to define them first
   articles: any;
 
   constructor(public navCtrl: NavController, public contentfulService: ContentfulService) {
