@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ContentfulService } from '../../app/services/contentful.service';
-
+import { Detail } from '../detail/detail';
 
 @Component({
   selector: 'page-home',
@@ -14,6 +14,12 @@ export class HomePage {
   articles: any;
 
   constructor(public navCtrl: NavController, public contentfulService: ContentfulService) {
+  }
+
+  itemSelected(item) {
+    this.navCtrl.push(Detail,{
+      article: item
+    });
   }
 
   ngOnInit() {
