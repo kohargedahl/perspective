@@ -57,8 +57,8 @@
           Background Information
         </ion-card-header>
 
-        <ion-card-content>
-          <!-- Add card content here! -->
+        <ion-card-content *ngFor="let wikipedia of wikipedia_Array ">
+          <p>{{wikipedia}}</p>
         </ion-card-content>
 
       </ion-card>

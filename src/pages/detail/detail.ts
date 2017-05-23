@@ -17,6 +17,7 @@ import 'rxjs/add/operator/map';
 export class Detail {
   article: any;
   wikipedia: any;
+  wikipedia_Array :any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.article = navParams.get('article');
@@ -36,6 +37,10 @@ export class Detail {
       })
     }).map(res => res.json()).subscribe(data => {
       this.wikipedia = data.query.pages;
+      for (var key in this.wikipedia) {
+        console.log(key);
+        this.wikipedia_Array.push(this.wikipedia[key]);
+      }
     });
   }
 
