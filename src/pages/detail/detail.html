@@ -31,9 +31,10 @@
 
 
       <ion-card>
-      <h4 class="DetailHeading">Sources:</h4>
+      <ion-card-header class="DetailHeading">Sources:</ion-card-header>
       <p>
-        <ion-card-content>{{article.fields.heading}}
+        <ion-card-content>
+          <h4 class="SourceHeading">{{article.fields.heading}}</h4>
           <p>
           {{article.fields.sources}}
           </p>
@@ -42,13 +43,13 @@
       </ion-card>
 
       <ion-card>
-      <h4 class="DetailHeading">Alternative Sources:</h4>
-        <p *ngFor="let source of article.fields.alternativeSources.sources">
-          {{source.title}}
-        </p>
-        <p *ngFor="let source of article.fields.alternativeSources.sources">
-        {{source.url}}
-        </p>
+      <ion-card-header class="DetailHeading">Alternative Sources:</ion-card-header>
+        <ion-card-content *ngFor="let source of article.fields.alternativeSources.sources">
+          <h4 class="SourceHeading">{{source.title}}</h4>
+          <p>
+          {{source.url}}
+          </p>
+        </ion-card-content>
       </ion-card>
 
       <ion-card>
@@ -57,8 +58,11 @@
           Background Information
         </ion-card-header>
 
-        <ion-card-content *ngFor="let wikipedia of wikipedia_Array ">
-          <p>{{wikipedia}}</p>
+        <ion-card-content *ngFor="let wikipedia of wikipedia_Array; let i=index ">
+          <div *ngIf="i<1">
+          <p>{{wikipedia.title}}</p>
+          <p>{{wikipedia.extract}}</p>
+          </div>
         </ion-card-content>
 
       </ion-card>
