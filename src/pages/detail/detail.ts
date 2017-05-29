@@ -23,7 +23,7 @@ export class Detail {
     this.article = navParams.get('article');
     var authHeader = new Headers();
     authHeader.append('Content-Type', 'jsonp');
-    this.getWikipediaData("Erdogan", authHeader, 1);
+    this.getWikipediaData(this.article.fields.wikipediaTitle, authHeader, 1);
     console.log(this.article);
 
   }
