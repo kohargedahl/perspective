@@ -6,7 +6,7 @@
 -->
 
 <ion-header>
-  <ion-navbar class="navbar">
+  <ion-navbar color="secondary" class="navbar">
     <ion-title>Perspective</ion-title>
   </ion-navbar>
 </ion-header>
@@ -58,11 +58,15 @@
           Background Information
         </ion-card-header>
 
-        <ion-card-content *ngFor="let wikipedia of wikipedia_Array; let i=index ">
-          <div *ngIf="i<1">
-          <p>{{wikipedia.title}}</p>
-          <p>{{wikipedia.extract}}</p>
-          </div>
+        <ion-card-content>
+          <ion-item *ngFor="let wikipedia of wikipedia_Array">
+            <ion-thumbnail *ngIf="wikipedia.thumbnail" item-left>
+              <img src="{{wikipedia.thumbnail.source}}">
+            </ion-thumbnail>
+              <h2>{{wikipedia.title}}</h2>
+              <p>{{wikipedia.extract}}</p>
+            <a ion-button block target="_blank" href="http://wikipedia.com/{{wikipedia.permalink}}">View on Wikipedia</a>
+          </ion-item>
         </ion-card-content>
 
       </ion-card>
