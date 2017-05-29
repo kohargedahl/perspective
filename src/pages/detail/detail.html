@@ -60,12 +60,14 @@
 
         <ion-card-content>
           <ion-item *ngFor="let wikipedia of wikipedia_Array">
-            <ion-thumbnail *ngIf="wikipedia.thumbnail" item-left>
+            <ion-thumbnail class="wikipedia-img" *ngIf="wikipedia.thumbnail" item-left>
               <img src="{{wikipedia.thumbnail.source}}">
             </ion-thumbnail>
+            <ion-label class="wikipedia-text">
               <h2>{{wikipedia.title}}</h2>
               <p>{{wikipedia.extract}}</p>
-            <a ion-button block target="_blank" href="http://wikipedia.com/wiki/{{wikipedia.title}}">View on Wikipedia</a>
+              <a class="ion-button" target="_blank" href="http://wikipedia.com/wiki/{{wikipedia.title}}">View on Wikipedia</a>
+            </ion-label>
           </ion-item>
         </ion-card-content>
 

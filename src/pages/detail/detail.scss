@@ -1,9 +1,24 @@
 page-detail {
   .DetailHeading {
-    font-style: bold;
+    font-weight: 400;
   }
 
   .SourceHeading {
-    font-style:bold
+    font-weight: 400;
+  }
+
+  .wikipedia-text {
+    white-space: inherit !important;
+  }
+
+  .wikipedia-img {
+    img {
+      height: auto !important;
+    }
+  }
+  .ion-button {
+    font-size: small;
   }
 }
+
+
