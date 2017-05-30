@@ -21,14 +21,12 @@ export class Detail {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.article = navParams.get('article');
-    var authHeader = new Headers();
-    authHeader.append('Content-Type', 'jsonp');
-    this.getWikipediaData(this.article.fields.wikipediaTitle, authHeader, 1);
+    this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
     console.log(this.article);
 
   }
 
-  private getWikipediaData(searchTerm, authHeader, limit) {
+  private getWikipediaData(searchTerm, limit) {
     this.http.get("http://localhost:8100/wikipedia?action=query&format=json&generator=search" +
       "&gsrsearch=" + searchTerm + "&gsrnamespace=0&gsrlimit=" + limit + "&prop=extracts|pageimages&exchars=200&exlimit=max&" +
       "explaintext=true&exintro=true&piprop=thumbnail&pilimit=max&pithumbsize=200", {
