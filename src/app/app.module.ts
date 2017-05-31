@@ -10,7 +10,6 @@ import { UserPage } from '../pages/UserPage/UserPage';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Detail } from '../pages/detail/detail';
-import { WikipediaPage } from '../pages/wikipedia/wikipedia';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
