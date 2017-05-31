@@ -4,13 +4,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ContentfulService } from './services/contentful.service'
 import { TabsPage } from '../pages/tabs/tabs';
+import { Login } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html',
   providers: [ContentfulService]
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage:any = Login;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

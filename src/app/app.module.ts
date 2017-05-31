@@ -6,7 +6,7 @@ import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { UserPage } from '../pages/UserPage/UserPage';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Detail } from '../pages/detail/detail';
@@ -14,14 +14,16 @@ import { WikipediaPage } from '../pages/wikipedia/wikipedia';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {Login} from "../pages/login/login";
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
+    UserPage,
     HomePage,
     TabsPage,
+    Login,
     Detail
   ],
   imports: [
@@ -33,9 +35,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
+    UserPage,
     HomePage,
     TabsPage,
+    Login,
     Detail
   ],
   providers: [

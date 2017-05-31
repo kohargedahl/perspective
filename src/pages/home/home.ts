@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ContentfulService } from '../../app/services/contentful.service';
 import { Detail } from '../detail/detail';
@@ -7,7 +7,6 @@ import { Detail } from '../detail/detail';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-
 
 export class HomePage {
 // in typescript when we create new variables we need to define them first
@@ -33,5 +32,4 @@ export class HomePage {
       this.articles = response.items.slice().reverse();
     }));
   }
-
 }
