@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Facebook, NativeStorage } from 'ionic-native';
 import { NavController } from 'ionic-angular';
 import { HomePage } from "../home/home";
+import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-login',
@@ -16,7 +17,7 @@ export class Login {
 
   doFakeLogin(){
     let nav = this.navCtrl;
-    nav.push(HomePage);
+    nav.push(TabsPage);
   }
 
   doFbLogin(){
