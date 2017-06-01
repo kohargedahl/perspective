@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 import 'rxjs/add/operator/map';
 
 /**
@@ -19,7 +20,7 @@ export class Detail {
   wikipedia: any;
   wikipedia_Array: any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private iab: InAppBrowser) {
     this.article = navParams.get('article');
     this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
     console.log(this.article);
@@ -40,6 +41,10 @@ export class Detail {
         this.wikipedia_Array.push(this.wikipedia[key]);
       }
     });
+  }
+
+  private loadUrl(url) {
+    this.iab.create(url);
   }
 
   ionViewDidLoad() {
