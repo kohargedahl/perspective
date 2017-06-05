@@ -72,6 +72,24 @@
           </ion-item>
         </ion-card-content>
 
+
+        <ion-card-header>
+          Twitter
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item *ngFor="let tweet of twitter">
+            <ion-thumbnail class="wikipedia-img"  item-left>
+              <img src="{{tweet.user.profile_image_url}}">
+            </ion-thumbnail>
+            <ion-label class="wikipedia-text">
+              <h2>{{tweet.user.name}}</h2>
+              <p>{{tweet.text}}</p>
+              <button (click)="loadUrl('https://twitter.com/user/status/' + tweet.id_str)">Link to Tweet</button>
+            </ion-label>
+          </ion-item>
+        </ion-card-content>
+
       </ion-card>
 
 
