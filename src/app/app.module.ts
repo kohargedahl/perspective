@@ -11,6 +11,8 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Detail } from '../pages/detail/detail';
 
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {Login} from "../pages/login/login";
@@ -43,6 +45,7 @@ import {Login} from "../pages/login/login";
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
