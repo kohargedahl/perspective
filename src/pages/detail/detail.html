@@ -1,0 +1,80 @@
+<!--
+  Generated template for the Detail page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar color="secondary" class="navbar">
+    <ion-title>Perspective</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+  <ion-content>
+    <ion-list>
+      <ion-card>
+      <h2>
+        <ion-card-header>{{article.fields.heading}}
+        </ion-card-header>
+      </h2>
+      <p>
+       <img src={{article.fields.imageUrl}}>
+      </p>
+      <p>
+       <ion-card-content>
+      {{article.fields.summary}}
+       </ion-card-content>
+      </p>
+      </ion-card>
+
+
+      <ion-card>
+      <ion-card-header class="DetailHeading">Sources:</ion-card-header>
+      <p>
+        <ion-card-content>
+          <h4 class="SourceHeading">{{article.fields.heading}}</h4>
+          <p>
+          {{article.fields.sources}}
+          </p>
+        </ion-card-content>
+      </p>
+      </ion-card>
+
+      <ion-card>
+      <ion-card-header class="DetailHeading">Alternative Sources:</ion-card-header>
+        <ion-card-content *ngFor="let source of article.fields.alternativeSources.sources">
+          <h4 class="SourceHeading">{{source.title}}</h4>
+          <p>
+          {{source.url}}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+
+        <ion-card-header>
+          Background Information
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item *ngFor="let wikipedia of wikipedia_Array">
+            <ion-thumbnail class="wikipedia-img" *ngIf="wikipedia.thumbnail" item-left>
+              <img src="{{wikipedia.thumbnail.source}}">
+            </ion-thumbnail>
+            <ion-label class="wikipedia-text">
+              <h2>{{wikipedia.title}}</h2>
+              <p>{{wikipedia.extract}}</p>
+              <a class="ion-button" target="_blank" href="http://wikipedia.com/wiki/{{wikipedia.title}}">View on Wikipedia</a>
+            </ion-label>
+          </ion-item>
+        </ion-card-content>
+
+      </ion-card>
+
+
+    </ion-list>
+  </ion-content>
+
+

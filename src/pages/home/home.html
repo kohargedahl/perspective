@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-navbar class="navbar">
+  <ion-navbar color="secondary" class="navbar">
     <ion-title>Perspective</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let item of articles">  <!--for every single item we create a variable called article-->
+    <ion-card *ngFor="let item of articles" (click)="itemSelected(item)">  <!--for every single item we create a variable called article-->
 
       <ion-card-header>
         {{item.fields.heading}}
@@ -17,5 +17,6 @@
       </ion-card-content>
 
     </ion-card>
+
   </ion-list>
 </ion-content>
