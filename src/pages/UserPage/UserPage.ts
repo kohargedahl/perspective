@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Facebook, NativeStorage } from 'ionic-native';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { Facebook } from '@ionic-native/facebook';
 import { Login } from '../login/login';
 
 @Component({
@@ -13,11 +14,11 @@ export class UserPage {
   user: any;
   userReady: boolean = false;
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, public nativeStorage: NativeStorage, public facebook: Facebook) {}
 
   ionViewCanEnter(){
     let env = this;
-    NativeStorage.getItem('user')
+    this.nativeStorage.getItem('user')
       .then(function (data){
         env.user = {
           name: data.name,
@@ -32,10 +33,10 @@ export class UserPage {
 
   doFbLogout(){
     var nav = this.navCtrl;
-    Facebook.logout()
+    this.facebook.logout()
       .then(function(response) {
         //user logged out so we will remove him from the NativeStorage
-        NativeStorage.remove('user');
+        this.nativeStorage.remove('user');
         nav.push(Login);
       }, function(error){
         console.log(error);
