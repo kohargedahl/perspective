@@ -12,6 +12,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Detail } from '../pages/detail/detail';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Facebook } from '@ionic-native/facebook';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -46,6 +48,8 @@ import {Login} from "../pages/login/login";
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    Facebook, 
+    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

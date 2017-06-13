@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Facebook, NativeStorage } from 'ionic-native';
 import { NavController } from 'ionic-angular';
 import { HomePage } from "../home/home";
-import {TabsPage} from "../tabs/tabs";
+import { TabsPage } from "../tabs/tabs";
+import { NativeStorage } from '@ionic-native/native-storage';
+import { Facebook } from '@ionic-native/facebook';
 
 @Component({
   selector: 'page-login',
@@ -11,8 +12,9 @@ import {TabsPage} from "../tabs/tabs";
 export class Login {
   FB_APP_ID: number = 1963235260577512;
 
-  constructor(public navCtrl: NavController) {
-    Facebook.browserInit(this.FB_APP_ID, "v2.8");
+  constructor(public navCtrl: NavController, public facebook: Facebook, public nativeStorage: NativeStorage) {
+    this.nativeStorage = nativeStorage;
+    facebook.browserInit(this.FB_APP_ID, "v2.8");
   }
 
   doFakeLogin(){
@@ -26,17 +28,17 @@ export class Login {
     //the permissions your facebook app needs from the user
     permissions = ["public_profile"];
 
-    Facebook.login(permissions)
+    this.facebook.login(permissions)
       .then(function(response){
         let userId = response.authResponse.userID;
         let params = new Array<string>();
 
         //Getting name and gender properties
-        Facebook.api("/me?fields=name,gender", params)
+        this.facebook.api("/me?fields=name,gender", params)
           .then(function(user) {
             user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
             //now we have the users info, let's save it in the NativeStorage
-            NativeStorage.setItem('user',
+            this.nativeStorage.setItem('user',
               {
                 name: user.name,
                 gender: user.gender,
