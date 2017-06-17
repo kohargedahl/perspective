@@ -49,6 +49,19 @@
           <p>
           {{source.url}}
           </p>
+          <p>
+            <iframe
+              src="http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?query=sourcelang:english+tonelessthan:-6+Russia+Trump&output=artlist&dropdup=true&maxrows=1">
+
+            </iframe>
+            <iframe
+              src="http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?query=sourcelang:english+tonemorethan:3+Russia+Trump&output=artlist&dropdup=true&maxrows=1">
+
+            </iframe>
+            <iframe
+              src="http://api.gdeltproject.org/api/v2/geo/geo?query=trump+sourcelang:english&mode=sourcecountry">
+            </iframe>
+          </p>
         </ion-card-content>
       </ion-card>
 

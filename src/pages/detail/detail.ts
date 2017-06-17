@@ -18,6 +18,8 @@ export class Detail {
   article: any;
   wikipedia: any;
   wikipedia_Array: any[] = [];
+  gdelt: any;
+  gdelt_Array: any [] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.article = navParams.get('article');
@@ -25,6 +27,7 @@ export class Detail {
     console.log(this.article);
 
   }
+
 
   private getWikipediaData(searchTerm, limit) {
     this.http.get("http://localhost:8100/wikipedia?action=query&format=json&generator=search" +
@@ -41,6 +44,8 @@ export class Detail {
       }
     });
   }
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Detail');
