@@ -3,11 +3,12 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ContentfulService } from './services/contentful.service'
+import {RedditServices} from './services/reddit.services';
 import { Login } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [ContentfulService]
+  providers: [ContentfulService, RedditServices]
 })
 export class MyApp {
   rootPage:any = Login;

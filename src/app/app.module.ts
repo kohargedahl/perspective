@@ -18,6 +18,9 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {Login} from "../pages/login/login";
+import {RedditsPage} from '../pages/reddits/reddits';
+import {SettingsPage} from'../pages/settings/settings';
+import {DetailsPage} from'../pages/details/details';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import {Login} from "../pages/login/login";
     HomePage,
     TabsPage,
     Login,
-    Detail
+    Detail,
+    RedditsPage,
+    SettingsPage,
+    DetailsPage,
   ],
   imports: [
     HttpModule,
@@ -42,13 +48,16 @@ import {Login} from "../pages/login/login";
     HomePage,
     TabsPage,
     Login,
-    Detail
+    Detail,
+    RedditsPage,
+    SettingsPage,
+    Detailspage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     InAppBrowser,
-    Facebook, 
+    Facebook,
     NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
