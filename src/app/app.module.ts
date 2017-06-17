@@ -51,7 +51,7 @@ import {DetailsPage} from'../pages/details/details';
     Detail,
     RedditsPage,
     SettingsPage,
-    Detailspage
+    DetailsPage
   ],
   providers: [
     StatusBar,
