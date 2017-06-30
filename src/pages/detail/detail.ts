@@ -19,6 +19,7 @@ export class Detail {
   article: any;
   wikipedia: any;
   twitter:any;
+  summary:any;
   wikipedia_Array: any[] = [];
 
 
@@ -26,21 +27,29 @@ export class Detail {
     this.article = navParams.get('article');
     this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
     this.getTwitterData('Merkel');
+    this.getSummary(encodeURIComponent(this.article.fields.sources[0]));
     console.log(this.article);
+  }
 
+  private getSummary(url) {
+    this.http.get("http://localhost:3000/process/" + url)
+    .map(res => res.json()).subscribe(data => {
+      console.log(data)
+        this.summary = data.summary;
+    });
   }
 
   private getWikipediaData(searchTerm, limit) {
-    this.http.get("http://localhost:8100/wikipedia?action=query&format=json&generator=search" +
+    this.http.get("http://localhost:8100/wikipedia/w/api.php?action=query&format=json&generator=search" +
       "&gsrsearch=" + searchTerm + "&gsrnamespace=0&gsrlimit=" + limit + "&prop=extracts|pageimages&exchars=200&exlimit=max&" +
       "explaintext=true&exintro=true&piprop=thumbnail&pilimit=max&pithumbsize=200", {
       headers: new Headers({
         'Content-Type': 'jsonp'
       })
     }).map(res => res.json()).subscribe(data => {
+      console.log(data);
       this.wikipedia = data.query.pages;
       for (var key in this.wikipedia) {
-        console.log(key);
         this.wikipedia_Array.push(this.wikipedia[key]);
       }
     });
