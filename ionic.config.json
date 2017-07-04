@@ -5,7 +5,13 @@
     {
       "path": "/wikipedia",
       "proxyUrl": "https://en.wikipedia.org/w/api.php"
+    },
+    {
+      "path": "/api",
+      "proxyUrl": "http://api.gdeltproject.org"
     }
   ],
   "type": "ionic-angular"
 }
+
+

@@ -9,6 +9,9 @@ import 'rxjs/add/operator/map';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
+//declare var Trump: string;
+
 @IonicPage()
 @Component({
   selector: 'page-detail',
@@ -21,12 +24,29 @@ export class Detail {
   gdelt: any;
   gdelt_Array: any [] = [];
 
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.article = navParams.get('article');
     this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
+    this.getgdeltData(this.article.fields.wikipediaTitle,2);
     console.log(this.article);
 
   }
+
+  private getgdeltData(keyword, rows) {
+    this.http.get("http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?" +
+    "query=sourcelang:english+tonelessthan:-6+"+ keyword+ "&output=urllist&dropdup=true&maxrows=" +rows +"")
+      .subscribe(data=> {
+
+        this.gdelt = data;
+      },
+       err => {
+          console.log("Oops!");
+       }
+      );
+  }
+
 
 
   private getWikipediaData(searchTerm, limit) {
