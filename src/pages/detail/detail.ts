@@ -25,20 +25,19 @@ export class Detail {
   gdelt_Array: any [] = [];
 
 
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.article = navParams.get('article');
-    this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
-    this.getgdeltData(this.article.fields.wikipediaTitle,2);
+    //this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
+    this.getgdeltData("trump", 2);
     console.log(this.article);
 
   }
 
   private getgdeltData(keyword, rows) {
-    this.http.get("http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?" +
+    this.http.get("http://localhost:8100/gdelt?" +
     "query=sourcelang:english+tonelessthan:-6+"+ keyword+ "&output=urllist&dropdup=true&maxrows=" +rows +"")
       .subscribe(data=> {
-
+        debugger;
         this.gdelt = data;
       },
        err => {

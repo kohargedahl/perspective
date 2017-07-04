@@ -7,8 +7,8 @@
       "proxyUrl": "https://en.wikipedia.org/w/api.php"
     },
     {
-      "path": "/api",
-      "proxyUrl": "http://api.gdeltproject.org"
+      "path": "/gdelt",
+      "proxyUrl": "http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch"
     }
   ],
   "type": "ionic-angular"
