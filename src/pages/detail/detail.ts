@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Content } from 'ionic-angular';
+import { FabContainer} from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
@@ -15,7 +17,9 @@ import 'rxjs/add/operator/map';
   selector: 'page-detail',
   templateUrl: 'detail.html',
 })
+
 export class Detail {
+  @ViewChild(Content) content: Content;
   article: any;
   wikipedia: any;
   twitter:any;
@@ -24,9 +28,10 @@ export class Detail {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private iab: InAppBrowser) {
+    
     this.article = navParams.get('article');
     this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
-    this.getTwitterData('Merkel');
+    this.getTwitterData(this.article.fields.wikipediaTitle);
     this.getSummary(encodeURIComponent(this.article.fields.sources[0]));
     console.log(this.article);
   }
@@ -56,7 +61,7 @@ export class Detail {
   }
 
   private getTwitterData(searchTerm) {
-    this.http.get("http://ec2-52-11-161-67.us-west-2.compute.amazonaws.com:3000/twitter/" + searchTerm, {
+    this.http.get("http://localhost:3000/twitter/" + searchTerm, {
       headers: new Headers({
         'Content-Type': 'json'
       })
@@ -67,6 +72,16 @@ export class Detail {
 
   private loadUrl(url) {
     this.iab.create(url);
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
+
+  scrollTo(element:string, fab: FabContainer) {
+    fab.close();
+    let yOffset = document.getElementById(element).offsetTop;
+    this.content.scrollTo(0, yOffset, 4000)
   }
 
   ionViewDidLoad() {

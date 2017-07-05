@@ -1,3 +1,12 @@
 page-home {
 
+    ion-card-header {
+        font-weight: 600 !important;
+    }
+
+    .news-article:not(:first-child) {
+        padding-top: 20px;
+    }
+
 }
+

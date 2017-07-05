@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HomePage } from "../home/home";
-import { TabsPage } from "../tabs/tabs";
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Facebook } from '@ionic-native/facebook';
 
@@ -19,7 +18,7 @@ export class Login {
 
   doFakeLogin(){
     let nav = this.navCtrl;
-    nav.push(TabsPage);
+    nav.setRoot(HomePage);
   }
 
   doFbLogin(){

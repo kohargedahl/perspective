@@ -13,6 +13,7 @@ export class HomePage {
   articles: any;
 
   constructor(public navCtrl: NavController, public contentfulService: ContentfulService) {
+    
     //this is cool.
   }
 

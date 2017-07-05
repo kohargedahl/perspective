@@ -19,6 +19,15 @@ page-detail {
   .ion-button {
     font-size: small;
   }
+
+  .img-circle {
+    border-radius: 50%;
+  }
+
+  ion-fab {
+    position: fixed !important;
+    right: 17px !important;
+  }
 }
 
 
