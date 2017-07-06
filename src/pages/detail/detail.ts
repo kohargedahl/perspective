@@ -12,6 +12,9 @@ import 'rxjs/add/operator/map';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
+declare var cordova: any;
+
 @IonicPage()
 @Component({
   selector: 'page-detail',
@@ -71,7 +74,8 @@ export class Detail {
   }
 
   private loadUrl(url) {
-    this.iab.create(url);
+    var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
+
   }
 
   scrollToTop() {
