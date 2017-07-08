@@ -20,7 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {Login} from "../pages/login/login";
 import {RedditsPage} from '../pages/reddits/reddits';
 import {SettingsPage} from'../pages/settings/settings';
-import {DetailsPage} from'../pages/details/details';
+import {DetailsReddit} from'../pages/details-reddit/details-reddit';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import {DetailsPage} from'../pages/details/details';
     Detail,
     RedditsPage,
     SettingsPage,
-    DetailsPage,
+    DetailsReddit,
   ],
   imports: [
     HttpModule,
@@ -49,9 +49,9 @@ import {DetailsPage} from'../pages/details/details';
     TabsPage,
     Login,
     Detail,
+    DetailsReddit,
     RedditsPage,
-    SettingsPage,
-    DetailsPage
+    SettingsPage
   ],
   providers: [
     StatusBar,

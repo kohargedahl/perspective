@@ -56,6 +56,8 @@
           Background Information
         </ion-card-header>
 
+
+
         <ion-card-content>
           <ion-item *ngFor="let wikipedia of wikipedia_Array">
             <ion-thumbnail class="wikipedia-img" *ngIf="wikipedia.thumbnail" item-left>
@@ -68,10 +70,25 @@
             </ion-label>
           </ion-item>
         </ion-card-content>
+        <ion-card-header>
+          Reddit:
+        </ion-card-header>
 
+        <ion-card-content>
+          <ion-list>
+            <ion-item *ngFor = "let item of redditItems">
+              <h2> {{item.data.title}} </h2>
+              <p>
+                <ion-icon name = "thumbs-up" > {{item.data.score}} </ion-icon>&nbsp;&nbsp;
+                <ion-icon name = "chatboxes" > {{item.data.num_comments}} </ion-icon>
+              </p>
+              <button ion-button clear item-right (click)="viewItem(item.data)">View</button>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
 
         <ion-card-header>
-          Twitter
+          Twitter:
         </ion-card-header>
 
         <ion-card-content>
