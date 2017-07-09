@@ -29,7 +29,7 @@ export class RedditsPage implements OnInit{
     if(localStorage.getItem('limit') != null){
       this.limit = localStorage.getItem('limit');
     } else {
-      this.limit = 10;
+      this.limit = 2;
     }
   }
 

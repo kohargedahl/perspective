@@ -43,6 +43,9 @@ export class Detail implements OnInit{
     var newstring = [];
     string = string.replace (/,/g, "");
     string = string.replace(/\./g, "");
+   // string = string.replace(/\’/g, "");
+    string = string.replace(/\’s/g, "");
+
     console.log(string);
     var wordsArray = string.split(/\s/);
 
@@ -85,8 +88,8 @@ export class Detail implements OnInit{
 
   }
   getDefaults(){
-     
-      this.limit = 10;
+
+      this.limit = 2;
   }
   getPosts(category, limit){
     this.redditService.getPosts(category, limit).subscribe(response => {

@@ -28,7 +28,7 @@ export class SettingsPage {
       this.limit = localStorage.getItem('limit');
     }
     else {
-      this.limit = '3';
+      this.limit = '2';
     }
   }
 
