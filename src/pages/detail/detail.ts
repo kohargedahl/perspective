@@ -29,9 +29,7 @@ export class Detail {
   summary:any;
   wikipedia_Array: any[] = [];
 
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private iab: InAppBrowser) {
-    
     this.article = navParams.get('article');
     this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
     this.getTwitterData(this.article.fields.wikipediaTitle);
@@ -43,7 +41,7 @@ export class Detail {
     this.http.get("http://localhost:3000/process/" + url)
     .map(res => res.json()).subscribe(data => {
       console.log(data)
-        this.summary = data.summary;
+        this.summary = data.summary.replace('\\\\"','\"');
     });
   }
 
@@ -56,9 +54,13 @@ export class Detail {
       })
     }).map(res => res.json()).subscribe(data => {
       console.log(data);
-      this.wikipedia = data.query.pages;
-      for (var key in this.wikipedia) {
-        this.wikipedia_Array.push(this.wikipedia[key]);
+      try {
+        this.wikipedia = data.query.pages;
+        for (var key in this.wikipedia) {
+          this.wikipedia_Array.push(this.wikipedia[key]);
+        }
+      } catch (error) {
+        this.wikipedia = ""; 
       }
     });
   }
@@ -75,7 +77,6 @@ export class Detail {
 
   private loadUrl(url) {
     var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
-
   }
 
   scrollToTop() {
@@ -91,6 +92,4 @@ export class Detail {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Detail');
   }
-
-
 }
