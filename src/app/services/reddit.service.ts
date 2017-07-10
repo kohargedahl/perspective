@@ -9,11 +9,11 @@ export class RedditService{
 
   constructor(http:Http){
     this.http = http;
-    this.baseUrl = 'https://www.reddit.com/r';
+    this.baseUrl = 'https://www.reddit.com/r/pics/search.json?q=';
   }
 
   getPosts(category, limit){
-    return this.http.get(this.baseUrl+'/'+category+'/top.json?limit='+limit)
+    return this.http.get(this.baseUrl+category+'&sort=top&limit='+limit)
       .map(res => res.json());
   }
 }

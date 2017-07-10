@@ -82,7 +82,7 @@
                 <ion-icon name = "thumbs-up" > {{item.data.score}} </ion-icon>&nbsp;&nbsp;
                 <ion-icon name = "chatboxes" > {{item.data.num_comments}} </ion-icon>
               </p>
-              <button ion-button clear item-right (click)="viewItem(item.data)">View</button>
+              <button ion-button clear item-right (click)="loadUrl('https://www.reddit.com' + item.data.permalink)">View</button>
             </ion-item>
           </ion-list>
         </ion-card-content>
