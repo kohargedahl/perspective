@@ -26,6 +26,7 @@ export class HomePage {
   ngOnInit() {
     console.log('onInitRan');
     this.getArticles('article');
+
   }
 
   getArticles(category) {
