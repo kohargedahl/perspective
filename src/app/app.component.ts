@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ContentfulService } from './services/contentful.service'
 import { TabsPage } from '../pages/tabs/tabs';
 
+
 @Component({
   templateUrl: 'app.html',
   providers: [ContentfulService]

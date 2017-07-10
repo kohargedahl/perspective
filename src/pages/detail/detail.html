@@ -44,24 +44,13 @@
 
       <ion-card>
       <ion-card-header class="DetailHeading">Alternative Sources:</ion-card-header>
-        <ion-card-content *ngFor="let source of article.fields.alternativeSources.sources">
-          <h4 class="SourceHeading">{{source.title}}</h4>
-          <p>
-          {{source.url}}
-          </p>
-          <p>
-            <iframe
-              src="http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?query=sourcelang:english+tonelessthan:-6+Russia+Trump&output=artlist&dropdup=true&maxrows=1">
-
-            </iframe>
-            <iframe
-              src="http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?query=sourcelang:english+tonemorethan:3+Russia+Trump&output=artlist&dropdup=true&maxrows=1">
-
-            </iframe>
-            <iframe
-              src="http://api.gdeltproject.org/api/v2/geo/geo?query=trump+sourcelang:english&mode=sourcecountry">
-            </iframe>
-          </p>
+        <ion-card-content>
+          <p>Negative</p>
+          <!-- make element like <div (click)="openInInApp(gdeltNeg)">{{gdeltHeaderNeg}}</div>-->
+          <a [attr.href]="gdeltNeg" target="_blank">{{gdeltHeaderNeg}}</a>
+          <p>Positive</p>
+          <!-- make element like <div (click)="openInInApp(gdeltPos)">{{gdeltHeaderPos}}</div>-->
+          <a [attr.href]="gdeltPos" target="_blank">{{gdeltHeaderPos}}</a>
         </ion-card-content>
       </ion-card>
 

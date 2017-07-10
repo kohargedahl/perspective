@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {MattDamon} from '../../pipes/url-filter';
+import {Subscription} from "rxjs/Subscription";
 
 /**
  * Generated class for the Detail page.
@@ -16,37 +18,58 @@ import 'rxjs/add/operator/map';
 @Component({
   selector: 'page-detail',
   templateUrl: 'detail.html',
+
+
 })
 export class Detail {
   article: any;
   wikipedia: any;
   wikipedia_Array: any[] = [];
-  gdelt: any;
-  gdelt_Array: any [] = [];
-
+  gdeltPos: string;
+  gdeltHeaderPos: string;
+  gdeltNeg: string;
+  gdeltHeaderNeg: string;
+  gdelt_ArrayPos: any [] = [];
+  gdelt_ArrayNeg: any [] = [];
+  myString: any;
+  str: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.article = navParams.get('article');
     //this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
-    this.getgdeltData("trump", 2);
+    this.getgdeltData(-6,"trump", 1);
+    this.getgdeltData(3,"trump",1);
     console.log(this.article);
 
   }
 
-  private getgdeltData(keyword, rows) {
-    this.http.get("http://localhost:8100/gdelt?" +
-    "query=sourcelang:english+tonelessthan:-6+"+ keyword+ "&output=urllist&dropdup=true&maxrows=" +rows +"")
+  private getgdeltData(tone,keyword, rows) {
+    //This should be in a service!
+    let urlTone = "";
+    if(tone > 0) {
+      urlTone = "tonemorethan:" + tone;
+    } else {
+      urlTone = "tonelessthan:" + tone;
+    }
+
+    return this.http.get("http://localhost:8100/gdelt?" +
+    "query=sourcelang:english+"+urlTone+"+"+ keyword+ "&dropdup=true&maxrows=" +rows +"")
       .subscribe(data=> {
-        debugger;
-        this.gdelt = data;
+
+       if(tone > 0) {
+         this.gdeltHeaderPos = data['_body'].match(/<B>(.*?)<\/B>/g)[0].replace(/<\/?B>/g,'');
+         this.gdeltPos = data['_body'].match(/window.open\('(.*?)'\)/g)[0].replace("window.open('", "").replace("')", '');
+       } else {
+         this.gdeltHeaderNeg = data['_body'].match(/<B>(.*?)<\/B>/g)[0].replace(/<\/?B>/g,'');
+         this.gdeltNeg = data['_body'].match(/window.open\('(.*?)'\)/g)[0].replace("window.open('", "").replace("')", '');
+       }
+
       },
        err => {
           console.log("Oops!");
        }
       );
   }
-
-
 
   private getWikipediaData(searchTerm, limit) {
     this.http.get("http://localhost:8100/wikipedia?action=query&format=json&generator=search" +
@@ -64,11 +87,27 @@ export class Detail {
     });
   }
 
+  openInInApp(url) {
+    /*
+
+     import { InAppBrowser } from '@ionic-native/in-app-browser';
+
+     iab from constructor
+
+     const browser = this.iab.create('https://ionicframework.com/');
+
+     const browser = this.iab.create(url);
+
+     */
+  }
+
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Detail');
   }
+
+
 
 
 }

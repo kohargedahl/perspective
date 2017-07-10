@@ -14,6 +14,7 @@ import { WikipediaPage } from '../pages/wikipedia/wikipedia';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MattDamon} from './pipes/url-filter';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     HomePage,
     TabsPage,
+    MattDamon,
     Detail
   ],
   imports: [
