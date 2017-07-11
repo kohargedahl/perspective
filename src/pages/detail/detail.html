@@ -16,46 +16,48 @@
     <ion-list>
       <img src={{article.fields.imageUrl}}>
       <div class="summary">
-        <h2 ion-text color="primary" class="dashboard-heading dashboard-text">
+        <h2 ion-text color="primary" class="dashboard-heading dashboard-text" style="margin-left:5px;">
           {{article.fields.heading}}
         </h2> 
         <div class="content">
         <div class="summary-text dashboard-text">
-          <p style="color: #1d1d1d;">{{summary}}</p>
-        </div>
+          <p>{{summary}}</p>
+        </div>      
         <p>
-        <hr>
         <p>
          <ion-fab bottom right #fab>
           <button ion-fab color="dark"><ion-icon name="ios-globe-outline"></ion-icon></button>
           <ion-fab-list side="top">
             <button ion-fab (click)="scrollTo('alternative-sources', fab)"><ion-icon name="ios-paper-outline"></ion-icon></button>                 
-            <button ion-fab (click)="scrollTo('wikipedia', fab)"><ion-icon name="ios-information-circle-outline"></ion-icon></button>
-            <button ion-fab (click)="scrollTo('twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>                   
+            <button ion-fab (click)="scrollTo('wikipedia', fab)"><ion-icon name="ios-book-outline"></ion-icon></button>
+            <button ion-fab (click)="scrollTo('twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
+            <button ion-fab (click)="scrollTo('reddit', fab)"><ion-icon name="logo-reddit"></ion-icon></button>
+            <button ion-fab (click)="scrollTo('youtube', fab)"><ion-icon name="logo-youtube"></ion-icon></button>
           </ion-fab-list>
         </ion-fab>           
        </div>
       </div>
+        
+      <div *ngFor="let source of article.fields.originalSources.sources" style="margin-left: 25px;">
+        <p ion-text color="secondary" style="display:inline;">
+          from: {{source.outlet}}
+        </p>              
+        <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(source.url)" style="float:right; display:inline; margin-top:-5px; margin-right:25px;">
+          Visit article
+        </button>
+      </div>
 
-
-      <ion-card>
-      <ion-card-header>Sources</ion-card-header>
-        <ion-card-content>
-          <div>          
-            <h2 ion-text color="primary" style="display: inline; margin: auto; font-weight: 100; font-size: x-large;">The Big Title</h2>
-            <button ion-button small color="dark" icon-left round outline (click)="loadUrl(article.fields.sources)" style="float:right; margin:auto;">
-              Visit article
-            </button>
-          </div>
-          
-        </ion-card-content>
-      </ion-card>
+      
+      <h2 id="perspectives-headline">Perspectives</h2>
 
       <ion-card id="alternative-sources">
       <ion-card-header>Alternative Sources</ion-card-header>
         <ion-card-content *ngFor="let source of article.fields.alternativeSources.sources">
-          <h2 ion-text color="primary" style="display: inline; margin: auto; font-weight: 100; font-size: x-large;">The Big Title</h2>
-          <button ion-button small color="dark" icon-left round outline (click)="loadUrl(source.url)" style="float:right; margin:auto;">
+          <h3 class="source-heading" ion-text color="primary">{{source.title}}</h3>
+           <p ion-text color="secondary">
+            from: {{source.outlet}}
+          </p>  
+          <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(source.url)">
             Visit article
           </button>
         </ion-card-content>
@@ -63,39 +65,22 @@
 
       <ion-card id="wikipedia">
         <ion-card-header>
-          Background Information
+          Wikipedia
         </ion-card-header>
         <ion-card-content>
           <ion-item *ngFor="let wikipedia of wikipedia_Array">
-            <ion-thumbnail class="wikipedia-img" *ngIf="wikipedia.thumbnail" item-left>
+            <ion-thumbnail class="wikipedia-img" *ngIf="wikipedia.thumbnail" item-left (click)="loadUrl('https://en.wikipedia.org/wiki/' + article.fields.wikipediaTitle)">
               <img src="{{wikipedia.thumbnail.source}}">
             </ion-thumbnail>
-            <ion-label class="wikipedia-text">
+            <ion-label class="wikipedia-text" (click)="loadUrl('https://en.wikipedia.org/wiki/' + article.fields.wikipediaTitle)">
               <h2>{{wikipedia.title}}</h2>
               <p>{{wikipedia.extract}}</p>
             </ion-label>
+        
           </ion-item>
         </ion-card-content>
       </ion-card>
-      
-      <ion-card id="reddit">
-        <ion-card-header>
-          Reddit
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item *ngFor = "let item of redditItems">
-              <h2> {{item.data.title}} </h2>
-              <p>
-                <ion-icon name = "thumbs-up" > {{item.data.score}} </ion-icon>&nbsp;&nbsp;
-                <ion-icon name = "chatboxes" > {{item.data.num_comments}} </ion-icon>
-              </p>
-              <button ion-button clear item-right (click)="loadUrl('https://www.reddit.com' + item.data.permalink)">Views</button>
-            </ion-item>
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
-      
+    
       <ion-card id="twitter">
         <ion-card-header>
           Twitter
@@ -110,12 +95,28 @@
               <p>{{tweet.text}}</p>
               <button ion-button small color="dark" icon-left round outline (click)="loadUrl('https://twitter.com/user/status/' + tweet.id_str)">
                 <ion-icon name="logo-twitter"></ion-icon>
-                Link to Tweet
+                View Tweet
               </button>
             </ion-label>
           </ion-item>
         </ion-card-content>
       </ion-card>
+
+      <ion-card id="reddit">
+        <ion-card-header>
+          Reddit
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item *ngFor = "let item of redditItems">
+            <h3 class="reddit-heading" ion-text color="primary" (click)="loadUrl('https://www.reddit.com' + item.data.permalink)">{{item.data.title}}</h3>
+            <p>
+              <ion-icon class="reddit-stats" name = "thumbs-up"><span>{{item.data.score}}</span></ion-icon>&nbsp;&nbsp;
+              <ion-icon class="reddit-stats" name = "chatboxes"><span>{{item.data.num_comments}}</span></ion-icon>
+            </p>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
       <ion-card id="youtube">
          <ion-card-header>
           Youtube

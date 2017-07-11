@@ -5,10 +5,9 @@ import { FabContainer} from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
-import 'rxjs/add/operator/map';
 import  { RedditService } from "../../app/services/reddit.service";
 import { DomSanitizer } from "@angular/platform-browser";
-
+import 'rxjs/add/operator/map';
 
 /**
  * Generated class for the Detail page.
@@ -40,7 +39,7 @@ export class Detail{
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private iab: InAppBrowser, private redditService:RedditService, private domSanitizer : DomSanitizer) {
     this.article = navParams.get('article');
     this.youtubeURL = this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube-nocookie.com/embed/' + this.article.fields.youtube + '?rel=0&amp;controls=0&amp;showinfo=0');
-    this.getSummary(encodeURIComponent(this.article.fields.sources[0]));
+    this.getSummary(encodeURIComponent(this.article.fields.originalSources.sources[0].url));
     this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
     this.getTwitterData(this.article.fields.wikipediaTitle);
     console.log(this.article);

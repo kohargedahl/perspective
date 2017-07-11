@@ -4,6 +4,10 @@ page-home {
         font-weight: 600 !important;
     }
 
+    p {
+        line-height: 25px;
+    }
+
     .news-article:not(:first-child) {
         padding-top: 20px;
     }
