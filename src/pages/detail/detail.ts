@@ -7,6 +7,8 @@ import { Http, Headers } from '@angular/http';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 import 'rxjs/add/operator/map';
 import  { RedditService } from "../../app/services/reddit.service";
+import { DomSanitizer } from "@angular/platform-browser";
+
 
 /**
  * Generated class for the Detail page.
@@ -32,10 +34,12 @@ export class Detail{
   twitter:any;
   summary:any;
   limit:number=2;
+  youtubeURL :any;
   wikipedia_Array: any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private iab: InAppBrowser, private redditService:RedditService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private iab: InAppBrowser, private redditService:RedditService, private domSanitizer : DomSanitizer) {
     this.article = navParams.get('article');
+    this.youtubeURL = this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube-nocookie.com/embed/' + this.article.fields.youtube + '?rel=0&amp;controls=0&amp;showinfo=0');
     this.getSummary(encodeURIComponent(this.article.fields.sources[0]));
     this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
     this.getTwitterData(this.article.fields.wikipediaTitle);
@@ -46,7 +50,7 @@ export class Detail{
     this.http.get("http://localhost:3000/process/" + url)
     .map(res => res.json()).subscribe(data => {
       console.log(data)
-        this.summary = data.summary.replace(/\\\"/g,'\"');
+        this.summary = data.summary.replace(/\\"/g,'\"');
         this.summary = this.summary.substring(1, this.summary.length -1);
         this.nthMostCommon(this.summary);
         this.getDefaults();
@@ -143,7 +147,7 @@ export class Detail{
 
   private loadUrl(url) {
     try {
-      var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
+      cordova.InAppBrowser.open(url, '_blank', 'location=yes');
     } catch (error) {
       window.open(url);
     }

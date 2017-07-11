@@ -21,7 +21,7 @@
         </h2> 
         <div class="content">
         <div class="summary-text dashboard-text">
-          <p>{{summary}}</p>
+          <p style="color: #1d1d1d;">{{summary}}</p>
         </div>
         <p>
         <hr>
@@ -115,6 +115,12 @@
             </ion-label>
           </ion-item>
         </ion-card-content>
+      </ion-card>
+      <ion-card id="youtube">
+         <ion-card-header>
+          Youtube
+        </ion-card-header>
+        <iframe width="100%" height="auto" [src]="youtubeURL" frameborder="0" allowfullscreen></iframe>
       </ion-card>
     </ion-list>
   </ion-content>
