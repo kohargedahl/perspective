@@ -5,7 +5,7 @@ import { FabContainer} from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
-import  { RedditService } from "../../app/services/reddit.service";
+import { RedditService } from "../../app/services/reddit.service";
 import { DomSanitizer } from "@angular/platform-browser";
 import 'rxjs/add/operator/map';
 
@@ -22,8 +22,6 @@ declare var cordova: any;
 @Component({
   selector: 'page-detail',
   templateUrl: 'detail.html',
-
-
 })
 
 export class Detail{
@@ -47,6 +45,7 @@ export class Detail{
   gdelt_ArrayNeg: any [] = [];
   myString: any;
   str: any;
+  internationalSource:String;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private iab: InAppBrowser, private redditService:RedditService, private domSanitizer : DomSanitizer) {
     this.article = navParams.get('article');
@@ -54,9 +53,10 @@ export class Detail{
     this.getSummary(encodeURIComponent(this.article.fields.originalSources.sources[0].url));
     this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
     this.getTwitterData(this.article.fields.wikipediaTitle);
-    this.getgdeltData(-6,"trump", 1);
-    this.getgdeltData(3,"trump",1);
-    this.getgdeltIntData("Nigeria","trump",1);
+    this.getgdeltData(-6, this.article.fields.gdeltKeyword, 1);
+    this.getgdeltData(3, this.article.fields.gdeltKeyword,1);
+    this.internationalSource = this.article.fields.internationalSource;
+    this.getgdeltIntData(this.internationalSource, this.article.fields.gdeltKeyword ,1);
     console.log(this.article);
   }
 
@@ -138,12 +138,9 @@ export class Detail{
       urlTone = "tonelessthan:" + tone;
     }
 
-
-
     this.http.get("http://localhost:8100/gdelt?" +
     "query=sourcelang:english+"+urlTone+"+"+ keyword+ "&dropdup=true&maxrows=" +rows +"")
       .subscribe(data=> {
-
        if(tone > 0) {
          this.gdeltHeaderPos = data['_body'].match(/<B>(.*?)<\/B>/g)[0].replace(/<\/?B>/g,'');
          this.gdeltPos = data['_body'].match(/window.open\('(.*?)'\)/g)[0].replace("window.open('", "").replace("')", '');
@@ -151,7 +148,6 @@ export class Detail{
          this.gdeltHeaderNeg = data['_body'].match(/<B>(.*?)<\/B>/g)[0].replace(/<\/?B>/g,'');
          this.gdeltNeg = data['_body'].match(/window.open\('(.*?)'\)/g)[0].replace("window.open('", "").replace("')", '');
        }
-
       },
        err => {
           console.log("Oops!");
@@ -163,11 +159,9 @@ export class Detail{
     this.http.get("http://localhost:8100/gdelt?" +
     "query=sourcelang:english+sourcecountry:"+sourcecountry+"+"+keyword+"&output=artlist&dropdup=true&maxrows="+rows +"")
       .subscribe(data=> {
-
       this.gdeltHeaderInt = data['_body'].match(/<B>(.*?)<\/B>/g)[0].replace(/<\/?B>/g,'');
       this.gdeltInt = data['_body'].match(/window.open\('(.*?)'\)/g)[0].replace("window.open('", "").replace("')", '');
-    })
-
+    });
   }
 
   private getWikipediaData(searchTerm, limit) {

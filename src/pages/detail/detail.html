@@ -47,29 +47,33 @@
         </button>
       </div>
 
-
       <h2 id="perspectives-headline">Perspectives</h2>
       <ion-card id="alternative-sources">
       <ion-card-header>Alternative Sources</ion-card-header>
         <ion-card-content>
-          <div class="alternative-source" *ngFor="let source of article.fields.alternativeSources.sources">
-          <h3 class="source-heading" ion-text color="primary">{{source.title}}</h3>
-          <p>Negative</p>
-          <!-- make element like <div (click)="openInInApp(gdeltNeg)">{{gdeltHeaderNeg}}</div>-->
-          <a [attr.href]="gdeltNeg" target="_blank">{{gdeltHeaderNeg}}</a>
-          <p>Positive</p>
-          <!-- make element like <div (click)="openInInApp(gdeltPos)">{{gdeltHeaderPos}}</div>-->
-          <a [attr.href]="gdeltPos" target="_blank">{{gdeltHeaderPos}}</a>
-          <p>International</p>
-          <a [attr.href]="gdeltInt" target="_blank">{{gdeltHeaderInt}}</a>            
-            <p ion-text color="secondary">
-              from: {{source.outlet}}
-            </p>  
-            <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(source.url)">
+           <div class="alternative-source">
+            <p ion-text color="secondary">Positive</p>
+            <h3 class="source-heading" ion-text color="primary">{{gdeltHeaderPos}}</h3>
+            <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(gdeltPos)">
+                Visit article
+              </button>
+          </div>
+
+          <div class="alternative-source">
+            <p ion-text color="secondary">Negative</p>
+            <h3 class="source-heading" ion-text color="primary">{{gdeltHeaderNeg}}</h3>
+            <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(gdeltNeg)">
               Visit article
             </button>
           </div>
 
+          <div class="alternative-source">          
+            <p ion-text color="secondary">International (from <b>{{internationalSource}}</b>)</p>
+            <h3 class="source-heading" ion-text color="primary">{{gdeltHeaderInt}}</h3>
+            <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(gdeltInt)">
+                Visit article
+              </button>   
+          </div>
         </ion-card-content>
       </ion-card>
 
