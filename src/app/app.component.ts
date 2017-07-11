@@ -6,6 +6,7 @@ import { ContentfulService } from './services/contentful.service'
 import { RedditService } from './services/reddit.service';
 import { Login } from '../pages/login/login';
 
+
 @Component({
   templateUrl: 'app.html',
   providers: [ContentfulService, RedditService]

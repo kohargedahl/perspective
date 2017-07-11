@@ -49,12 +49,19 @@
 
 
       <h2 id="perspectives-headline">Perspectives</h2>
-
       <ion-card id="alternative-sources">
       <ion-card-header>Alternative Sources</ion-card-header>
         <ion-card-content>
           <div class="alternative-source" *ngFor="let source of article.fields.alternativeSources.sources">
-            <h3 class="source-heading" ion-text color="primary">{{source.title}}</h3>
+          <h3 class="source-heading" ion-text color="primary">{{source.title}}</h3>
+          <p>Negative</p>
+          <!-- make element like <div (click)="openInInApp(gdeltNeg)">{{gdeltHeaderNeg}}</div>-->
+          <a [attr.href]="gdeltNeg" target="_blank">{{gdeltHeaderNeg}}</a>
+          <p>Positive</p>
+          <!-- make element like <div (click)="openInInApp(gdeltPos)">{{gdeltHeaderPos}}</div>-->
+          <a [attr.href]="gdeltPos" target="_blank">{{gdeltHeaderPos}}</a>
+          <p>International</p>
+          <a [attr.href]="gdeltInt" target="_blank">{{gdeltHeaderInt}}</a>            
             <p ion-text color="secondary">
               from: {{source.outlet}}
             </p>  
@@ -62,6 +69,7 @@
               Visit article
             </button>
           </div>
+
         </ion-card-content>
       </ion-card>
 

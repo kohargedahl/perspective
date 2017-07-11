@@ -101,7 +101,8 @@ page-detail {
 
   .alternative-source:not(:first-child){
     padding-top: 15px;
+
+  iframe {
+    height: 300px;
   }
 }
-
-
