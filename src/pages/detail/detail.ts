@@ -29,6 +29,8 @@ export class Detail {
   gdeltHeaderPos: string;
   gdeltNeg: string;
   gdeltHeaderNeg: string;
+  gdeltInt: string;
+  gdeltHeaderInt: string;
   gdelt_ArrayPos: any [] = [];
   gdelt_ArrayNeg: any [] = [];
   myString: any;
@@ -39,6 +41,7 @@ export class Detail {
     //this.getWikipediaData(this.article.fields.wikipediaTitle, 1);
     this.getgdeltData(-6,"trump", 1);
     this.getgdeltData(3,"trump",1);
+    this.getgdeltIntData("Nigeria","trump",1);
     console.log(this.article);
 
   }
@@ -52,7 +55,9 @@ export class Detail {
       urlTone = "tonelessthan:" + tone;
     }
 
-    return this.http.get("http://localhost:8100/gdelt?" +
+
+
+    this.http.get("http://localhost:8100/gdelt?" +
     "query=sourcelang:english+"+urlTone+"+"+ keyword+ "&dropdup=true&maxrows=" +rows +"")
       .subscribe(data=> {
 
@@ -69,6 +74,17 @@ export class Detail {
           console.log("Oops!");
        }
       );
+  }
+
+  private getgdeltIntData(sourcecountry,keyword, rows) {
+    this.http.get("http://localhost:8100/gdelt?" +
+    "query=sourcelang:english+sourcecountry:"+sourcecountry+"+"+keyword+"&output=artlist&dropdup=true&maxrows="+rows +"")
+      .subscribe(data=> {
+
+      this.gdeltHeaderInt = data['_body'].match(/<B>(.*?)<\/B>/g)[0].replace(/<\/?B>/g,'');
+      this.gdeltInt = data['_body'].match(/window.open\('(.*?)'\)/g)[0].replace("window.open('", "").replace("')", '');
+    })
+
   }
 
   private getWikipediaData(searchTerm, limit) {
