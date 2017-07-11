@@ -42,7 +42,7 @@
         <p ion-text color="secondary" style="display:inline;">
           from: {{article.fields.originalSource.outlet}}
         </p>              
-        <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(source.url)" style="float:right; display:inline; margin-top:-5px; margin-right:25px;">
+        <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(article.fields.originalSource.url)" style="float:right; display:inline; margin-top:-5px; margin-right:25px;">
           Visit article
         </button>
       </div>
