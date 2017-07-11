@@ -52,14 +52,16 @@
 
       <ion-card id="alternative-sources">
       <ion-card-header>Alternative Sources</ion-card-header>
-        <ion-card-content *ngFor="let source of article.fields.alternativeSources.sources">
-          <h3 class="source-heading" ion-text color="primary">{{source.title}}</h3>
-           <p ion-text color="secondary">
-            from: {{source.outlet}}
-          </p>  
-          <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(source.url)">
-            Visit article
-          </button>
+        <ion-card-content>
+          <div class="alternative-source" *ngFor="let source of article.fields.alternativeSources.sources">
+            <h3 class="source-heading" ion-text color="primary">{{source.title}}</h3>
+            <p ion-text color="secondary">
+              from: {{source.outlet}}
+            </p>  
+            <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(source.url)">
+              Visit article
+            </button>
+          </div>
         </ion-card-content>
       </ion-card>
 
