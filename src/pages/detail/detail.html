@@ -38,9 +38,9 @@
        </div>
       </div>
         
-      <div *ngFor="let source of article.fields.originalSources.sources" style="margin-left: 25px;">
+      <div style="margin-left: 25px;">
         <p ion-text color="secondary" style="display:inline;">
-          from: {{source.outlet}}
+          from: {{article.fields.originalSource.outlet}}
         </p>              
         <button class="visit-article-button" ion-button small color="dark" icon-left round outline (click)="loadUrl(source.url)" style="float:right; display:inline; margin-top:-5px; margin-right:25px;">
           Visit article
