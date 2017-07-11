@@ -11,8 +11,18 @@
   </ion-navbar>
 </ion-header>
 
+<ion-fab bottom right #fab>
+  <button ion-fab color="dark"><ion-icon name="ios-globe-outline"></ion-icon></button>
+  <ion-fab-list side="top">
+    <button ion-fab (click)="scrollTo('alternative-sources', fab)"><ion-icon name="ios-paper-outline"></ion-icon></button>                 
+    <button ion-fab (click)="scrollTo('wikipedia', fab)"><ion-icon name="ios-book-outline"></ion-icon></button>
+    <button ion-fab (click)="scrollTo('twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
+    <button ion-fab (click)="scrollTo('reddit', fab)"><ion-icon name="logo-reddit"></ion-icon></button>
+    <button ion-fab (click)="scrollTo('youtube', fab)"><ion-icon name="logo-youtube"></ion-icon></button>
+  </ion-fab-list>
+</ion-fab>           
 
-  <ion-content>
+  <ion-content (click)="closeFab(fab)">
     <ion-list>
       <img src={{article.fields.imageUrl}}>
       <div class="summary">
@@ -25,16 +35,6 @@
         </div>      
         <p>
         <p>
-         <ion-fab bottom right #fab>
-          <button ion-fab color="dark"><ion-icon name="ios-globe-outline"></ion-icon></button>
-          <ion-fab-list side="top">
-            <button ion-fab (click)="scrollTo('alternative-sources', fab)"><ion-icon name="ios-paper-outline"></ion-icon></button>                 
-            <button ion-fab (click)="scrollTo('wikipedia', fab)"><ion-icon name="ios-book-outline"></ion-icon></button>
-            <button ion-fab (click)="scrollTo('twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
-            <button ion-fab (click)="scrollTo('reddit', fab)"><ion-icon name="logo-reddit"></ion-icon></button>
-            <button ion-fab (click)="scrollTo('youtube', fab)"><ion-icon name="logo-youtube"></ion-icon></button>
-          </ion-fab-list>
-        </ion-fab>           
        </div>
       </div>
         
@@ -47,7 +47,7 @@
         </button>
       </div>
 
-      
+
       <h2 id="perspectives-headline">Perspectives</h2>
 
       <ion-card id="alternative-sources">

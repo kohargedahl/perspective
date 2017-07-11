@@ -152,6 +152,10 @@ export class Detail{
     }
   }
 
+  private closeFab (fab: FabContainer) {
+   fab.close ();
+ }
+
   scrollToTop() {
     this.content.scrollToTop();
   }
