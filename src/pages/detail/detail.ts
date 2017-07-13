@@ -46,6 +46,8 @@ export class Detail{
   myString: any;
   str: any;
   internationalSource:String;
+  liveServerURL:String = 'http://ec2-34-210-170-152.us-west-2.compute.amazonaws.com:3000';
+  devServer: String = "http://localhost:3000";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private iab: InAppBrowser, private redditService:RedditService, private domSanitizer : DomSanitizer) {
     this.article = navParams.get('article');
@@ -61,7 +63,7 @@ export class Detail{
   }
 
   private getSummary(url) {
-    this.http.get("http://localhost:3000/process/" + url)
+    this.http.get(this.liveServerURL + "/process/" + url)
     .map(res => res.json()).subscribe(data => {
       console.log(data)
         this.summary = data.summary.replace(/\\"/g,'\"');
@@ -138,7 +140,7 @@ export class Detail{
       urlTone = "tonelessthan:" + tone;
     }
 
-    this.http.get("http://localhost:8100/gdelt?" +
+    this.http.get("http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?" +
     "query=sourcelang:english+"+urlTone+"+"+ keyword+ "&dropdup=true&maxrows=" +rows +"")
       .subscribe(data=> {
        if(tone > 0) {
@@ -156,7 +158,7 @@ export class Detail{
   }
 
   private getgdeltIntData(sourcecountry,keyword, rows) {
-    this.http.get("http://localhost:8100/gdelt?" +
+    this.http.get("http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?" +
     "query=sourcelang:english+sourcecountry:"+sourcecountry+"+"+keyword+"&output=artlist&dropdup=true&maxrows="+rows +"")
       .subscribe(data=> {
       this.gdeltHeaderInt = data['_body'].match(/<B>(.*?)<\/B>/g)[0].replace(/<\/?B>/g,'');
@@ -165,7 +167,7 @@ export class Detail{
   }
 
   private getWikipediaData(searchTerm, limit) {
-    this.http.get("http://localhost:8100/wikipedia/w/api.php?action=query&format=json&generator=search" +
+    this.http.get("https://en.wikipedia.org/w/api.php?action=query&format=json&generator=search" +
       "&gsrsearch=" + searchTerm + "&gsrnamespace=0&gsrlimit=" + limit + "&prop=extracts|pageimages&exchars=200&exlimit=max&" +
       "explaintext=true&exintro=true&piprop=thumbnail&pilimit=max&pithumbsize=200", {
       headers: new Headers({
@@ -185,7 +187,7 @@ export class Detail{
   }
 
   private getTwitterData(searchTerm) {
-    this.http.get("http://localhost:3000/twitter/" + searchTerm, {
+    this.http.get(this.liveServerURL + "/twitter/" + searchTerm, {
       headers: new Headers({
         'Content-Type': 'json'
       })
