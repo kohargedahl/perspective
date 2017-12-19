@@ -63,7 +63,7 @@ export class Detail{
   }
 
   private getSummary(url) {
-    this.http.get(this.liveServerURL + "/process/" + url)
+    this.http.get(this.devServer + "/process/" + url)
     .map(res => res.json()).subscribe(data => {
       console.log(data)
         this.summary = data.summary.replace(/\\"/g,'\"');
@@ -187,7 +187,7 @@ export class Detail{
   }
 
   private getTwitterData(searchTerm) {
-    this.http.get(this.liveServerURL + "/twitter/" + searchTerm, {
+    this.http.get(this.devServer + "/twitter/" + searchTerm, {
       headers: new Headers({
         'Content-Type': 'json'
       })
