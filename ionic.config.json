@@ -1,10 +1,18 @@
 {
-  "name": "Perspective",
+  "name": "appname",
+  "email": "",
   "app_id": "",
-  "v2": true,
-  "typescript": true,
-  "proxies": [{
-    "path": "/wikipedia",
-    "proxyUrl": "https://en.wikipedia.org/w/api.php"
-  }]
+  "proxies": [
+    {
+      "path": "/wikipedia/",
+      "proxyUrl": "https://en.wikipedia.org"
+    },
+    {
+      "path": "/gdelt",
+      "proxyUrl": "http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch"
+    }
+  ],
+  "type": "ionic-angular"
 }
+
+

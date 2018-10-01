@@ -6,17 +6,20 @@
 
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let item of articles" (click)="itemSelected(item)">  <!--for every single item we create a variable called article-->
+    <div class="news-article" *ngFor="let item of articles" (click)="itemSelected(item)">  <!--for every single item we create a variable called article-->
 
-      <ion-card-header>
-        {{item.fields.heading}}
-      </ion-card-header>
       <img src={{item.fields.imageUrl}}>
-      <ion-card-content>
+      <h2 ion-text color="primary" class="dashboard-heading dashboard-text">
+        {{item.fields.heading}}
+      </h2>
+      <p class="dashboard-text">
         {{item.fields.teaser}}
-      </ion-card-content>
-
-    </ion-card>
+      </p>
+      <p ion-text color="secondary" class="dashboard-text">
+         from: {{item.fields.originalSource.outlet}}
+      </p>
+      <hr>
+    </div>
 
   </ion-list>
 </ion-content>

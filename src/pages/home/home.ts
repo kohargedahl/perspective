@@ -13,6 +13,8 @@ export class HomePage {
   articles: any;
 
   constructor(public navCtrl: NavController, public contentfulService: ContentfulService) {
+    
+    //this is cool.
   }
 
   itemSelected(item) {
@@ -24,6 +26,7 @@ export class HomePage {
   ngOnInit() {
     console.log('onInitRan');
     this.getArticles('article');
+
   }
 
   getArticles(category) {
