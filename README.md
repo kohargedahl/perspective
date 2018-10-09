@@ -2,4 +2,4 @@ Perspective was a school-project born in the class "Technical Concepts for Media
 
 The vision of the project was to create a news app that could present short summarized news stories to users using scraping technology and text summarization, while also presenting different automated perspectives related to the stories. Such perspectives could for example be Youtube-videos with related background-content, related tweets, or longer news articles offering  different angles of the stories.
 
-See the final pitch of the project here: https://www.slideshare.net/OskarHargedahl/perspective-pitch
+See the final pitch of the project here: https://www.slideshare.net/OskarHargedahl/perspective-pitch-118917235
